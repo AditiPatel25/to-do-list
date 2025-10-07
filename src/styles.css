@@ -10,8 +10,9 @@ body {
 
 h1 {
   color: white;
-  text-align: center;
+  text-align: left;
   font-size: 34px;
+  padding-left: 1rem;
 }
 
 h2 {
@@ -24,6 +25,7 @@ h2 {
 li {
     list-style-type: none;
     font-size: 22px;
+    color: #964d4d;
 }
 
 ul {
@@ -39,9 +41,10 @@ button {
   font-size: 22px;
   text-align: left;
   width: 100%;
+  cursor: pointer;
 }
 
-button.add-todo-project {
+button.add-todo, button.add-project, button.add-note {
     width: auto;                     
     padding: 6px 12px;
     text-align: center;
@@ -78,7 +81,7 @@ button.selected {
     margin: 10px 15px;
 }
 
-.todo-header, .project-header {
+.todo-header, .project-header, .note-header {
     display: flex;             
     align-items: center;            
     justify-content: space-between;  
@@ -86,8 +89,200 @@ button.selected {
 
 .main-section {
     flex: 1;
-    background-color: rgb(223, 131, 19);
+    background-color: rgba(223, 131, 19, 0.176);
     margin: 10px 15px;
     border-radius: 22px;
     padding: 15px;
 }
+
+.todo-item {
+    background: #f8f9fac5;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.todo-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.todo-item.priority-high {
+    border-left: 7px solid #dc3545;
+}
+
+.todo-item.priority-medium {
+    border-left: 7px solid #ffc107;
+}
+
+.todo-item.priority-low {
+    border-left: 7px solid #28a745;
+}
+
+.todo-content {
+    flex: 1;
+}
+
+.todo-title {
+    font-weight: 600;
+    color: black;
+    margin-bottom: 0.25rem;
+    font-size: 1.05rem;
+}
+
+.todo-description {
+    color: black;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.todo-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: #6e6e6e;
+}
+
+.todo-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.todo-actions button {
+    padding: 0.25rem 0.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+.empty-state {
+    text-align: center;
+    color: rgb(223, 131, 19);
+    font-size: 1.5rem;
+}
+
+/* dialog styles */
+dialog {
+    border: none;
+    border-radius: 12px;
+    padding-right: 2.5rem;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+}
+
+.modal-header h3 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #999;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.close-modal:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #964d4d;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 50px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: #964d4d;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #964d4dc8;
+}
+
+.btn-secondary {
+    background: #e9ecef;
+    color: #555;
+}
+
+.btn-secondary:hover {
+    background: #dee2e6;
+}
+
