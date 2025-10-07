@@ -1,5 +1,6 @@
 import './styles.css';
+// import domController from './modules/domController.js';
 
-const app = document.createElement('div');
-app.innerHTML = "<h1>Hello Webpack!</h1>";
-document.body.appendChild(app);
+// document.addEventListener('DOMContentLoaded', () => {
+//   domController.init();
+// });
