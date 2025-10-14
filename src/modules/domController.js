@@ -111,9 +111,12 @@ const domController = (() => {
             }
         });
 
-        const projectItems = document.querySelectorAll('.project-list li');
-        projectItems.forEach(item => {
-            item.classList.remove('active');
+        const projectButtons = document.querySelectorAll('.project-list button');
+        projectButtons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.textContent === todoManager.getCurrentProject()) {
+                btn.classList.add('active');
+            }
         });
     };
 

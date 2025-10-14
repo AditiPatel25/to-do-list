@@ -117,6 +117,14 @@ button.selected {
     transform: translateY(-2px);
 }
 
+.todo-options button.active,
+.project-list button.active {
+  background-color: rgba(223, 131, 19, 0.289);
+  color: var(--priority-color);
+  font-weight: 600;
+  margin: 10px 0;
+}
+
 .todo-item.priority-high {
     border-left: 7px solid #dc3545;
 }
