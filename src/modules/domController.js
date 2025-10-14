@@ -187,7 +187,7 @@ const domController = (() => {
 
             const deleteBtn = document.createElement('button');
             deleteBtn.className = 'delete-btn';
-            deleteBtn.textContent = 'Delete';
+            deleteBtn.textContent = 'delete';
             deleteBtn.addEventListener('click', () => {
                 todoManager.deleteTodo(todo.id);
                 renderTodos();
@@ -195,7 +195,7 @@ const domController = (() => {
 
             const editBtn = document.createElement('button');
             editBtn.className = 'edit-btn';
-            editBtn.textContent = 'Edit';
+            editBtn.textContent = 'edit';
             editBtn.addEventListener('click', () => {
                 openEditDialog(todo);
                 renderTodos();

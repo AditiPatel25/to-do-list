@@ -315,3 +315,16 @@ dialog::backdrop {
   color: #aaa;
 }
 
+.footer {
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    margin: 0 10px 10px 10px;
+    background-color: var(--priority-color);
+    border-radius: 40px;
+}
+
+a {
+    color: white;
+}
+
