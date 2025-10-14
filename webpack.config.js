@@ -8,6 +8,7 @@ module.exports = {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
         clean: true,
+        publicPath: '/AditiPatel25/',
     },
     devtool: "eval-source-map",
     devServer: {
@@ -20,7 +21,7 @@ module.exports = {
             filename:'index.html',
             inject: 'head',
             scriptLoading: 'defer',
-            title:'Development'
+            title:'To-Do App',
         })
     ],
     module: {
