@@ -3,4 +3,8 @@ const common = require('./webpack.config.js');
 
 module.exports = merge(common, {
     mode: 'production',
+    devtool: 'source-map',
+    output: {
+        publicPath: '/to-do-list/', // ADD THIS!
+    }
  });
