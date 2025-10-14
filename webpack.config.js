@@ -8,7 +8,6 @@ module.exports = {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
         clean: true,
-        publicPath: '/AditiPatel25/',
     },
     devtool: "eval-source-map",
     devServer: {
