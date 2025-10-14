@@ -1,3 +1,8 @@
+:root {
+    --main-orange: rgb(223, 131, 19);
+    --priority-color: #964d4d;
+}
+
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background-color: #fafafa;
@@ -17,7 +22,7 @@ h1 {
 
 h2 {
     font-style: italic;
-    color: rgb(223, 131, 19);
+    color: var(--main-orange);
     text-decoration: underline;
     margin: 0;
 }
@@ -25,7 +30,7 @@ h2 {
 li {
     list-style-type: none;
     font-size: 22px;
-    color: #964d4d;
+    color: var(--priority-color);
 }
 
 ul {
@@ -34,7 +39,7 @@ ul {
 
 button {
   background-color: bisque;
-  color: #964d4d;
+  color: var(--priority-color);
   border: none;
   padding: 10px 12px;
   border-radius: 5px;
@@ -50,7 +55,7 @@ button.add-todo, button.add-project, button.add-note {
     text-align: center;
     font-size: 22px;
     border-radius: 50px;
-    border: 2px solid rgb(223, 131, 19);
+    border: 2px solid var(--main-orange);
 }
 
 button:hover {
@@ -62,7 +67,7 @@ button.selected {
 }
 
 .header-container {
-    background-color: #964d4d;;
+    background-color: var(--priority-color);
     text-align: center;
     border-radius: 22px;
     margin: 10px 15px;
@@ -96,15 +101,15 @@ button.selected {
 }
 
 .todo-item {
-    background: #f8f9fac5;
-    padding: 1rem;
-    margin-bottom: 0.75rem;
-    border-radius: 8px;
-    border-left: 4px solid #667eea;
-    transition: all 0.2s;
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  border-left: 4px solid var(--priority-color);
+  margin-bottom: 0.75rem;
+  transition: opacity 0.2s;
 }
 
 .todo-item:hover {
@@ -172,7 +177,7 @@ button.selected {
 
 .empty-state {
     text-align: center;
-    color: rgb(223, 131, 19);
+    color: var(--main-orange);
     font-size: 1.5rem;
 }
 
@@ -244,7 +249,7 @@ dialog::backdrop {
 .form-group textarea:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #964d4d;
+    border-color: var(--priority-color);
 }
 
 .form-group textarea {
@@ -269,7 +274,7 @@ dialog::backdrop {
 }
 
 .btn-primary {
-    background: #964d4d;
+    background: var(--priority-color);
     color: white;
 }
 
@@ -284,5 +289,29 @@ dialog::backdrop {
 
 .btn-secondary:hover {
     background: #dee2e6;
+}
+
+/* checkbox styles */
+
+.todo-checkbox {
+  width: 20px;
+  height: 20px;
+  margin-top: 0.25rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.todo-item.completed {
+  opacity: 0.6;
+}
+
+.todo-item.completed .todo-title {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.todo-item.completed .todo-description {
+  text-decoration: line-through;
+  color: #aaa;
 }
 

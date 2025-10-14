@@ -20,7 +20,7 @@ const todoManager = (() => {
             id: Date.now(),
             title,
             description,
-            dueDate: dueDate || null, 
+            dueDate: dueDate || null,
             priority,
             projectName: projectName || null,
             completed: false
@@ -32,6 +32,11 @@ const todoManager = (() => {
 
     const deleteTodo = (id) => {
         todos = todos.filter(t => t.id !== id);
+        saveTodos();
+    };
+
+    const editTodo = (id, updatedFields) => {
+        todos = todos.map(t => t.id === id ? { ...t, ...updatedFields } : t);
         saveTodos();
     };
 
@@ -90,8 +95,17 @@ const todoManager = (() => {
 
     const getAllTodos = () => todos;
 
+    const toggleTodoComplete = (id) => {
+        const todo = todos.find(t => t.id === id);
+        if (todo) {
+            todo.completed = !todo.completed;
+            saveTodos();
+        }
+    };
+
     return {
         addTodo,
+        editTodo,
         deleteTodo,
         addProject,
         getProjects,
@@ -100,7 +114,8 @@ const todoManager = (() => {
         setCurrentFilter,
         getCurrentFilter,
         getTodosByFilter,
-        getAllTodos
+        getAllTodos,
+        toggleTodoComplete  
     };
 })();
 

@@ -4,6 +4,29 @@ import { parseISO, format } from 'date-fns';
 
 
 const domController = (() => {
+    const openEditDialog = (todo) => {
+        const todoDialog = document.getElementById('todo-dialog');
+        const todoForm = document.getElementById('todo-form');
+        const submitBtn = todoForm.querySelector('button[type="submit"]');
+        const dialogTitle = todoDialog.querySelector('h3');
+
+        // Populate form with existing todo data
+        document.getElementById('todo-title').value = todo.title;
+        document.getElementById('todo-description').value = todo.description || '';
+        document.getElementById('todo-dueDate').value = todo.dueDate || '';
+        document.getElementById('todo-priority').value = todo.priority;
+        document.getElementById('todo-project').value = todo.projectName || '';
+
+        // Change submit button text
+        submitBtn.textContent = 'update to-do';
+        dialogTitle.textContent = 'edit to-do';
+
+        // Store the todo ID on the form for reference
+        todoForm.dataset.editingId = todo.id;
+
+        todoDialog.showModal();
+    };
+
     const renderProjects = () => {
         const projectList = document.getElementById('project-list');
         projectList.innerHTML = '';
@@ -42,7 +65,7 @@ const domController = (() => {
 
     const updateProjectSelect = () => {
         const select = document.getElementById('todo-project');
-        select.innerHTML = '<option value="">None</option>';
+        select.innerHTML = '<option value="">none</option>';
 
         const projects = todoManager.getProjects();
         projects.forEach(project => {
@@ -113,6 +136,20 @@ const domController = (() => {
             const li = document.createElement('li');
             li.className = `todo-item priority-${todo.priority}`;
 
+            if (todo.completed) {
+                li.classList.add('completed');
+            }
+
+            // Add checkbox at the beginning
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'todo-checkbox';
+            checkbox.checked = todo.completed;
+            checkbox.addEventListener('change', () => {
+                todoManager.toggleTodoComplete(todo.id);
+                renderTodos();
+            });
+
             const content = document.createElement('div');
             content.className = 'todo-content';
 
@@ -135,7 +172,7 @@ const domController = (() => {
             let dueDateText = 'No due date';
             if (todo.dueDate) {
                 const todoDate = parseISO(todo.dueDate);
-                dueDateText = format(todoDate, 'MMM d, yyyy'); // e.g., "Jan 15, 2025"
+                dueDateText = format(todoDate, 'MMM d, yyyy');
             }
 
             meta.innerHTML = `<span>📅 ${dueDateText}</span><span>⚡ ${todo.priority}</span>`;
@@ -156,8 +193,18 @@ const domController = (() => {
                 renderTodos();
             });
 
+            const editBtn = document.createElement('button');
+            editBtn.className = 'edit-btn';
+            editBtn.textContent = 'Edit';
+            editBtn.addEventListener('click', () => {
+                openEditDialog(todo);
+                renderTodos();
+            });
+
+            actions.appendChild(editBtn);
             actions.appendChild(deleteBtn);
 
+            li.appendChild(checkbox);
             li.appendChild(content);
             li.appendChild(actions);
             todoList.appendChild(li);
@@ -205,8 +252,23 @@ const domController = (() => {
 
             if (!title) return;
 
-            // Only pass dueDate if it's actually set
-            todoManager.addTodo(title, description, dueDate || null, priority, projectName);
+            const editingId = todoForm.dataset.editingId;
+
+            if (editingId) {
+                // Edit mode
+                todoManager.editTodo(Number(editingId), {
+                    title,
+                    description,
+                    dueDate: dueDate || null,
+                    priority,
+                    projectName: projectName || null
+                });
+                delete todoForm.dataset.editingId;
+                todoForm.querySelector('button[type="submit"]').textContent = 'Add To-Do';
+            } else {
+                // Add mode
+                todoManager.addTodo(title, description, dueDate || null, priority, projectName);
+            }
 
             todoForm.reset();
             todoDialog.close();
@@ -232,6 +294,24 @@ const domController = (() => {
             if (e.target === projectDialog) {
                 projectDialog.close();
                 projectForm.reset();
+            }
+        });
+
+        const resetFormState = () => {
+            todoForm.reset();
+            delete todoForm.dataset.editingId;
+            todoForm.querySelector('button[type="submit"]').textContent = 'Add To-Do';
+        };
+
+        cancelTodoBtn.addEventListener('click', () => {
+            todoDialog.close();
+            resetFormState();
+        });
+
+        todoDialog.addEventListener('click', (e) => {
+            if (e.target === todoDialog) {
+                todoDialog.close();
+                resetFormState();
             }
         });
 

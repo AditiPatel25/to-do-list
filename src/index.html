@@ -34,15 +34,6 @@
 
                 </ul>
             </div>
-            <div class="notes-section">
-                <div class="note-header">
-                    <h2>notes</h2>
-                    <button id="add-note-btn" class="add-note">+</button>
-                </div>
-                <ul class="notes-list">
-
-                </ul>
-            </div>
         </div>
         <div id="main-section" class="main-section">
             <div class="main-header">
@@ -50,9 +41,9 @@
             </div>
             <ul id="todo-list" class="todo-list">
             </ul>
-
         </div>
     </div>
+    
     <!-- Todo Dialog -->
     <dialog id="todo-dialog">
         <div class="modal-content">
@@ -61,34 +52,34 @@
             </div>
             <form id="todo-form" method="dialog">
                 <div class="form-group">
-                    <label for="todo-title">Title *</label>
+                    <label for="todo-title">title *</label>
                     <input type="text" id="todo-title" required>
                 </div>
                 <div class="form-group">
-                    <label for="todo-description">Description</label>
+                    <label for="todo-description">description</label>
                     <textarea id="todo-description"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="todo-dueDate">Due Date</label>
+                    <label for="todo-dueDate">due date</label>
                     <input type="date" id="todo-dueDate">
                 </div>
                 <div class="form-group">
-                    <label for="todo-priority">Priority</label>
+                    <label for="todo-priority">priority</label>
                     <select id="todo-priority">
-                        <option value="low">Low</option>
-                        <option value="medium" selected>Medium</option>
-                        <option value="high">High</option>
+                        <option value="low">low</option>
+                        <option value="medium" selected>medium</option>
+                        <option value="high">high</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="todo-project">Project</label>
+                    <label for="todo-project">project</label>
                     <select id="todo-project">
-                        <option value="">None</option>
+                        <option value="">none</option>
                     </select>
                 </div>
                 <div class="form-actions">
-                    <button type="button" class="btn btn-secondary" id="cancel-todo-btn">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Add To-Do</button>
+                    <button type="button" class="btn btn-secondary" id="cancel-todo-btn">cancel</button>
+                    <button type="submit" class="btn btn-primary">add to-do</button>
                 </div>
             </form>
         </div>
@@ -98,16 +89,16 @@
     <dialog id="project-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Add New Project</h3>
+                <h3>add new project</h3>
             </div>
             <form id="project-form" method="dialog">
                 <div class="form-group">
-                    <label for="project-name">Project Name *</label>
+                    <label for="project-name">project name *</label>
                     <input type="text" id="project-name" required>
                 </div>
                 <div class="form-actions">
-                    <button type="button" class="btn btn-secondary" id="cancel-project-btn">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Add Project</button>
+                    <button type="button" class="btn btn-secondary" id="cancel-project-btn">cancel</button>
+                    <button type="submit" class="btn btn-primary">add project</button>
                 </div>
             </form>
         </div>
