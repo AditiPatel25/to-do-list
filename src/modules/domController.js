@@ -10,18 +10,16 @@ const domController = (() => {
         const submitBtn = todoForm.querySelector('button[type="submit"]');
         const dialogTitle = todoDialog.querySelector('h3');
 
-        // Populate form with existing todo data
+        // populate form with existing todo data
         document.getElementById('todo-title').value = todo.title;
         document.getElementById('todo-description').value = todo.description || '';
         document.getElementById('todo-dueDate').value = todo.dueDate || '';
         document.getElementById('todo-priority').value = todo.priority;
         document.getElementById('todo-project').value = todo.projectName || '';
 
-        // Change submit button text
         submitBtn.textContent = 'update to-do';
         dialogTitle.textContent = 'edit to-do';
 
-        // Store the todo ID on the form for reference
         todoForm.dataset.editingId = todo.id;
 
         todoDialog.showModal();
@@ -36,8 +34,6 @@ const domController = (() => {
         if (projects.length === 0) {
             const li = document.createElement('li');
             li.textContent = 'no projects yet!';
-            //   li.style.cursor = 'default';
-            //   li.style.background = 'transparent';
             projectList.appendChild(li);
             return;
         }
@@ -269,7 +265,7 @@ const domController = (() => {
                 delete todoForm.dataset.editingId;
                 todoForm.querySelector('button[type="submit"]').textContent = 'Add To-Do';
             } else {
-                // Add mode
+                // add mode
                 todoManager.addTodo(title, description, dueDate || null, priority, projectName);
             }
 
@@ -278,7 +274,7 @@ const domController = (() => {
             renderTodos();
         });
 
-        // Project dialog handlers
+        // project dialog handlers
         const projectDialog = document.getElementById('project-dialog');
         const addProjectBtn = document.getElementById('add-project-btn');
         const cancelProjectBtn = document.getElementById('cancel-project-btn');
