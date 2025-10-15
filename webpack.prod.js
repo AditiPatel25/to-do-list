@@ -5,6 +5,6 @@ module.exports = merge(common, {
     mode: 'production',
     devtool: 'source-map',
     output: {
-        publicPath: '/to-do-list/', // ADD THIS!
+        publicPath: '/to-do-list/', 
     }
  });
